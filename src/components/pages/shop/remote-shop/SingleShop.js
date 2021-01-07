@@ -61,14 +61,14 @@ const SingleShop = ({ category, shop }) => {
   const shopContext = useContext(ShopContext);
 
   const toggleModal = (e) => {
-    const item = context.state.items[category - 1].shops[shop][e.target.id];
+    const item = context.itemsEbay[category - 1].shops[shop][e.target.id];
     setItem(item);
     setIsOpen(!isOpen);
   };
 
   const onAddToCartClick = (e) => {
     let itemSelected =
-      context.state.items[category - 1].shops[shop][e.target.id];
+      context.itemsEbay[category - 1].shops[shop][e.target.id];
     let copyOfItems = [...shopContext.cart];
     copyOfItems.push(itemSelected);
     shopContext.setCart(copyOfItems);
@@ -78,7 +78,7 @@ const SingleShop = ({ category, shop }) => {
     <>
       <StyledSingleShopGrid>
         {!context.loading &&
-          context.state.items[category - 1].shops[shop].map((shop, index) => (
+          context.itemsEbay[category - 1].shops[shop].map((shop, index) => (
             <>
               <SingleShopCard
                 id={shop.id}

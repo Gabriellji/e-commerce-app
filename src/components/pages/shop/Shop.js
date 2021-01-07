@@ -27,6 +27,7 @@ const Shop = (props) => {
 
   const shopContext = useContext(ShopContext);
 
+
   return (
     <>
       <MainNavbar />
@@ -60,8 +61,12 @@ const Shop = (props) => {
                   </div>
                 </Route>
 
-                {context.state &&
-                  context.state.items.map((category, categoryIndex) =>
+                {
+                  !context.loading && console.log(context.itemsEbay)
+                }
+
+                {!context.loading &&
+                  context.itemsEbay.map((category, categoryIndex) =>
                     category.shops.map((shops, shopsIndex) => {
                       let link = `/shop/category${
                         categoryIndex + 1
@@ -91,12 +96,12 @@ const Shop = (props) => {
                       <>
                         <SingleShopCard
                           name={
-                            context.state.items[category].shops[shop][index]
+                            context.itemsEbay[category].shops[shop][index]
                               .name
                           }
                           key={props.index}
                           price={
-                            context.state.items[category].shops[shop][index]
+                            context.itemsEbay[category].shops[shop][index]
                               .price
                           }
                         />
