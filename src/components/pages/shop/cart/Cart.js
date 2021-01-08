@@ -101,6 +101,7 @@ const Cart = ({ textColor, type }) => {
     return arr
       .filter((value, index, self) => self.indexOf(value) === index)
       .map(({ id, name, price, imageL }, i) => {
+        console.log(findQuantity(shopContext.cart, id))
         return (
           <CartItem
             key={i}
