@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { MyContext } from "./../../../../context/APIContext";
-import { ShopContext } from './../../../../context/ShopContext';
+import { ShopContext } from "./../../../../context/ShopContext";
 import { theme } from "../../../../data/theme";
 import { textData } from "../../../../data/textData";
 import SingleShopCard from "./SingleShopCard";
@@ -11,15 +11,12 @@ import Button from "../../../atoms/button/Button";
 import Text from "./../../../atoms/text/Text";
 import Hr from "../../../atoms/hr/Hr";
 import StripeCheckoutButton from "../stripe-button/StripeCheckoutButton";
-
 Modal.setAppElement("#root");
-
 const StyledSingleShopGrid = styled.div`
   display: grid;
   gap: ${theme.spacer};
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 `;
-
 const StyledModal = styled(Modal)`
   width: 80%;
   height: 80%;
@@ -53,27 +50,20 @@ const StyledModal = styled(Modal)`
 `;
 const SingleShop = ({ category, shop }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const [item, setItem] = useState("");
-
   const context = useContext(MyContext);
-
   const shopContext = useContext(ShopContext);
-
   const toggleModal = (e) => {
     const item = context.itemsEbay[category - 1].shops[shop][e.target.id];
     setItem(item);
     setIsOpen(!isOpen);
   };
-
   const onAddToCartClick = (e) => {
-    let itemSelected =
-      context.itemsEbay[category - 1].shops[shop][e.target.id];
+    let itemSelected = context.itemsEbay[category - 1].shops[shop][e.target.id];
     let copyOfItems = [...shopContext.cart];
     copyOfItems.push(itemSelected);
     shopContext.setCart(copyOfItems);
   };
-
   return (
     <>
       <StyledSingleShopGrid>
@@ -153,5 +143,4 @@ const SingleShop = ({ category, shop }) => {
     </>
   );
 };
-
 export default SingleShop;

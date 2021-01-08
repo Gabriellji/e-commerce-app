@@ -27,7 +27,7 @@ const ShopIconWrap = ({ category }) =>
   const shopIcons = shopData.map((el) => el.shops.map((elem) => elem.icon));
   return (
     <StyledIconCardRenderer>
-      {context.state.items[0].shops.map((el, index) => (
+      {context.itemsEbay[0].shops.map((el, index) => (
         <ShopIcon
           path={`/shop/${category}/${index}`}
           key={index}

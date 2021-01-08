@@ -27,7 +27,6 @@ const Shop = (props) => {
 
   const shopContext = useContext(ShopContext);
 
-
   return (
     <>
       <MainNavbar />
@@ -61,11 +60,7 @@ const Shop = (props) => {
                   </div>
                 </Route>
 
-                {
-                  !context.loading && console.log(context.itemsEbay)
-                }
-
-                {!context.loading &&
+                {context.state &&
                   context.itemsEbay.map((category, categoryIndex) =>
                     category.shops.map((shops, shopsIndex) => {
                       let link = `/shop/category${
@@ -73,7 +68,8 @@ const Shop = (props) => {
                       }/${shopsIndex}`;
                       return (
                         <Route exact path={link}>
-                          <SingleShop {...props}
+                          <SingleShop
+                            {...props}
                             category={categoryIndex + 1}
                             shop={shopsIndex}
                           />
@@ -92,17 +88,17 @@ const Shop = (props) => {
                     const category = res[0] - 1;
                     const shop = res[1];
                     const index = res[2];
+                    console.log(category)
+                    console.log(context.itemsEbay)
                     return (
                       <>
                         <SingleShopCard
                           name={
-                            context.itemsEbay[category].shops[shop][index]
-                              .name
+                            context.itemsEbay[category].shops[shop][index].name
                           }
                           key={props.index}
                           price={
-                            context.itemsEbay[category].shops[shop][index]
-                              .price
+                            context.itemsEbay[category].shops[shop][index].price
                           }
                         />
                         <Link to={`/shop/category${category + 1}/${shop}`}>

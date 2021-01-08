@@ -58,7 +58,7 @@ const MyAPIProvider = ({ children }) => {
           //storing only what i need inside category.data
           itemData.map((singleItem) =>
             category.data.push({
-              name: singleItem.Item.Title,
+              name: singleItem.Item.Title.split("", 60),
               imageS: singleItem.Item.GalleryURL,
               imageL: singleItem.Item.PictureURL[0],
               price: singleItem.Item.ConvertedCurrentPrice.Value,
@@ -105,7 +105,7 @@ const MyAPIProvider = ({ children }) => {
             default:
               break;
           }
-          console.log(finalState)
+          // console.log(finalState)
         });
     };
     category.map((e) => apiCall(e));

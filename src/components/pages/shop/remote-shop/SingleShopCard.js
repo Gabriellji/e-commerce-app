@@ -18,13 +18,22 @@ const StyledSingleShopCard = styled.div`
   margin: auto;
   margin-top: ${theme.spacer};
   border-radius: ${theme.spacer};
+
+  div {
+    height: 400px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    img {
+      width: 100%;
+      max-height: 400px;
+      border-radius: ${theme.spacer};
+    }
+  }
   /* animation */
   transition: ${theme.transition};
-  img {
-    width: 100%;
-    height: 400px;
-    border-radius: ${theme.spacer};
-  }
   :hover {
     box-shadow: 0px 0px ${theme.spacer} 0px ${theme.colors.shadow};
   }
@@ -41,7 +50,9 @@ const SingleShopCard = ({
 }) => {
   return (
     <StyledSingleShopCard>
-      <img src={imageS} alt={name} />
+      <div>
+        <img src={imageS} alt={name} />
+      </div>
       <Text color="primary" size="M" text={name} />
       <Text
         color="dark"
