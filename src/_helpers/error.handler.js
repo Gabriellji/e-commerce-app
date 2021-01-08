@@ -88,7 +88,7 @@ const ErrorHandler = () => {
       onMouseEnter={() => {
         accessError(false);
         errorHandling();
-        // context.state.isLoggedIn && bugHandling();
+       context.state.isLoggedIn && bugHandling();
       }}
       onMouseLeave={() => {
         accessError(true);

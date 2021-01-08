@@ -173,7 +173,7 @@ const Cart = ({ textColor, type }) => {
             color="primary"
             action={shopContext.cartToggle}
             text={textData.shop.cart.exit}
-            width="parent"
+            width="auto"
           />
           {shopContext.cart.length > 0 && (
             <>
@@ -182,7 +182,7 @@ const Cart = ({ textColor, type }) => {
               color="primary"
               text={textData.shop.cart.clear}
               action={clearAllItems}
-              width="parent"
+              width="auto"
             />
             <div>
             <Text size="M" color="dark" text={textData.shop.cart.items} />
@@ -194,13 +194,12 @@ const Cart = ({ textColor, type }) => {
           </div>
           </>
           )}
-        </StyledCartLastSection>
-        {shopContext.state.isLoggedIn ? (
+          {shopContext.state.isLoggedIn ? (
           <StripeCheckoutButton price={getTotalPrice()} />
         ) : (
           shopContext.cart.length > 0 && (
             <Button
-              width="parent"
+              width="auto"
               size="M"
               color="primary"
               text={textData.shop.checkout.notLogged}
@@ -210,6 +209,7 @@ const Cart = ({ textColor, type }) => {
             />
           )
         )}
+        </StyledCartLastSection>
       </Modal>
     </>
   );

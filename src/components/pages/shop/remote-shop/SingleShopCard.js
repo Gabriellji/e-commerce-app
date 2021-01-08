@@ -50,12 +50,11 @@ const SingleShopCard = ({
 }) => {
   return (
     <StyledSingleShopCard>
-      <div>
-        <img src={imageS} alt={name} />
-      </div>
-      <Text color="primary" size="M" text={name} />
+      <img src={imageS} alt={name} />  {/* name.substr(0, 47) */}
+      <Text color="primary" align="center" size="M" text={name.split(" ").slice(0,6).join(" ")} />
       <Text
         color="dark"
+        align="center"
         size="S"
         text="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, obcaecati,
         porro hic magni aliquid error natus velit, nostrum maxime eligendi

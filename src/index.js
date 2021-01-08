@@ -19,6 +19,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     outline: none;
     font-family: Inder, sans-serif}
+    &::-webkit-scrollbar {
+  display: none;
+}
 `;
 
 fakeBackend();

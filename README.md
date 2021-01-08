@@ -27,7 +27,7 @@
     - [Hooks](#wrench-hooks)
     - [Context](#pushpin-context)
     - [APIs](#telephone_receiver-apis)
-    - [`theme.js` and `textData.js`](#page_with_curl-`theme.js`-and-`textData.js`)
+    - [`theme.js` and `textData.js`](#page_with_curl-themejs-and-textdatajs)
 - [:floppy_disk: Installation](#floppy_disk-installation)
 - [:thought_balloon: About the project](#thought_balloon-about-the-project)
     - [Some history](#seedling-some-history)
@@ -38,36 +38,38 @@
     - [User personas](#walking-user-personas)
     - [Explorations + Decisions](#brain-explorations--decisions)
 - [:link: Other information](#link-other-information)
-    - [Epics (Scrum)](#japanese_goblin-epics-(scrum))
-    - [Design guidelines and ressources](#nail_care-design-guidelines-and-ressources)
+    - [Epics (Scrum)](#japanese_goblin-epics-scrum)
+    - [Atomic design, Styled Components, and UX notes](#nail_care-atomic-design-styled-components-and-ux-notes)
     - [Git and GitHub guidelines](#dizzy-git-and-github-guidelines)
 - [:cop: License](#cop-license)
 
 </br>
 
 # :microscope: About the code
-The following are the major frameworks and technologies that we used to build our project:
-- React
+The main frameworks and technologies used to build our Project are the following:
+
+- React (with *Hooks* and *Context*)
 - React Router
 - Styled Components
-- ...
 
 ## [:top:](#table-of-contents)
 
-## :wrench: Hooks
-By exploiting the power of React Hooks, we were able to use functional components in most cases. For instance, in the rendering UI or for handling state and logic. This approach has many advantages : 
+## :wrench: *Hooks*
+By exploiting the power of *React Hooks*, we were able to use functional components in most cases. For instance, when rendering UI or handling state and logic.
+
+Using *Hooks* has many advantages : 
 - Improved code reuse.
 - Better code composition.
 - Better defaults.
 - Sharing non-visual logic with the use of custom hooks.
-- Flexibility in moving up and down the components tree.
+- Flexibility when moving up and down the components tree.
 
-In our project we mainly used the `useState`, `useEffect`, `useRef` and `useContext` hooks.
+In our project we mainly used the following Hooks: `useState`, `useEffect`, `useRef`, and `useContext`.
 
 ## [:top:](#table-of-contents)
 
-## :pushpin: Context
-In our project, we decided to use React Context because it allows us to share information with any component by storing it in a central place.
+## :pushpin: *Context*
+In our project, we decided to use *React Context* because it allows us to share information with any component by storing it in a central location.
 
 With this approach, it’s quite easy to provide data to any component in the React component tree, regardless of how deeply nested they may be.
 
@@ -83,16 +85,14 @@ We used the following APIs in our web application:
 | API | ? |
 |--|--|
 | [Mapbox API](https://docs.mapbox.com/api/overview/ "https://docs.mapbox.com/api/overview/") | We used the Mapbox Maps Service to display a map with the location of the stores that sell on the web app. |
-| [React Modal Library](https://reactcommunity.org/react-modal/ "https://reactcommunity.org/react-modal/") | This a modal dialog component for React.JS that we used in different places in our web app. |
+| [React Modal Library](https://reactcommunity.org/react-modal/ "https://reactcommunity.org/react-modal/") | This is a modal dialog component for React.JS that we used in different places in our web app. |
 | [Node.js UUID Library](https://www.npmjs.com/package/uuid "https://www.npmjs.com/package/uuid") | This library is used to create short non-sequential url-friendly unique ids |
 | [Stripe API](https://stripe.com/docs "https://stripe.com/docs") | This API provides a payments infrastructure for the internet. We used it on the payment page. |
 | [React Stripe Checkout Component](https://www.npmjs.com/package/react-stripe-checkout "https://www.npmjs.com/package/react-stripe-checkout") | Stripe is a cloud-based service that enables businesses and individuals to receive payments over the internet and offers both client-side libraries (JavaScript and native mobile) and server-side libraries (Java, Ruby, Node.js, etc.). |
 | [Facebook Login](https://developers.facebook.com/docs/facebook-login/ "https://developers.facebook.com/docs/facebook-login/") | Facebook Login enables people to have private & secure experiences, from basic account creation to social networking, all with the click of a button--it is uniquely positioned to offer a seamless experience across platforms, devices, and operating systems. |
 | [Google Sign-In](https://developers.google.com/identity/sign-in/web/sign-in#add_a_google_sign-in_button) | Google Sign-In enables users to sign into apps and authorize apps to use Google services. |
-| [Finding API (eBay)](https://developer.ebay.com/DevZone/finding/Concepts/FindingAPIGuide.html) | Used to to retrieve a list of items from a given category to display in the shops. |
-| [Shopping API (eBay)](https://developer.ebay.com/devzone/shopping/docs/Concepts/ShoppingAPIGuide.html) | Used to retrieve a single item to display in the shops. |
-
-</br>
+| [Finding API (eBay)](https://developer.ebay.com/DevZone/finding/Concepts/FindingAPIGuide.html) | Used to retrieve a list of items from a given category to display in the shops. |
+| [Shopping API (eBay)](https://developer.ebay.com/devzone/shopping/docs/Concepts/ShoppingAPIGuide.html) | Used to retrieve information about a single item to display in the shops. |
 
 ### About Stripe API
 It would have been easier to make a fake payment form with HTML, or even copy and paste one of those cool animated payment forms you can find in *CodePen* but we wanted to learn how to do it for real as if it was an actual job and not just a Bootcamp exercise.
@@ -102,13 +102,19 @@ Out of the different solutions at our disposal, we chose the Stripe API because 
 We are using it in *Testing mode* for this web application but it's also possible to make it receive real payments.
 
 ### About the eBay APIs
-As with many other APIs, you need a key to use the ones from eBay. Rather than using a free and public API with images of items, we decided to try and send a request to the eBay Developer’s Program. Three days later we got a positive answer containing our very own access key :smile: . With it, we can make up to 5,000 API calls a day, more than enough for our purposes.
+We first tried to use one of those free and public APIs to get images of products, but we quickly discovered that they were very limited. You could only do very few API calls a day, you would only get a dozen items at most which also weren't particularly attractive.
 
-We also decided to make the API call from inside of a Context because of two reasons:
+After searching around, we stumbled upon the eBay APIs which seemed to what we needed, at least on paper. We decided to give it a go but, just as with many other APIs, we needed our own key.
+
+We then sent a request to the *eBay Developer’s Program* and three days later we got a positive answer containing our very own access key :smile: . With it, we can make up to 5,000 API calls a day, more than enough for our purposes :smile:. 
+
+We tried first the *Finding API* to retrieve a list of items from a given category to display in the shops. However, when it was time to display the images, we found out that the ones provided by this API were very small. So, to get the full resolution images we used *Shopping API*, making calls for each item to be displayed.
+
+We also decided to make the API call from inside of a Context because of the following two reasons:
 - To reduce the number of API calls produced by a single user.
 - To improve the performance (the call will be made as soon as the landing page on the website is loaded).
 
-What follows is a sample response we receive when using the Finding API with a specific *Category Id* :
+What follows is a standard received when using the Finding API with a specific *Category Id* :
 
     {"findItemsByCategoryResponse":[{"ack":["Success"],"version":["1.13.0"],"timestamp":["2021-01-05T16:48:02.158Z"],"searchResult":[{"@count":"1","item":[{"itemId":["124475001012"],"title":["Felco F-2 Pruner High Performance Pruning Shears"],"globalId":["EBAY-US"],"primaryCategory":[{"categoryId":["139871"],"categoryName":["Pruning Shears & Snips"]}],"galleryURL":["https:\/\/thumbs1.ebaystatic.com\/m\/mwnwIEW33HzUFiq3iwbG4jA\/140.jpg"],"viewItemURL":["https:\/\/www.ebay.com\/itm\/Felco-F-2-Pruner-High-Performance-Pruning-Shears-\/124475001012"],"paymentMethod":["PayPal"],"autoPay":["false"],"postalCode":["080**"],"location":["Burlington,NJ,USA"],"country":["US"],"shippingInfo":[{"shippingServiceCost":[{"@currencyId":"USD","__value__":"0.0"}],"shippingType":["Free"],"shipToLocations":["Worldwide"],"expeditedShipping":["false"],"oneDayShippingAvailable":["false"],"handlingTime":["3"]}],"sellingStatus":[{"currentPrice":[{"@currencyId":"USD","__value__":"36.99"}],"convertedCurrentPrice":[{"@currencyId":"USD","__value__":"36.99"}],"sellingState":["Active"],"timeLeft":["P1DT18H39M25S"]}],"listingInfo":[{"bestOfferEnabled":["true"],"buyItNowAvailable":["false"],"startTime":["2020-12-08T23:27:30.000Z"],"endTime":["2021-01-07T11:27:27.000Z"],"listingType":["FixedPrice"],"gift":["false"],"watchCount":["14"]}],"returnsAccepted":["true"],"condition":[{"conditionId":["1000"],"conditionDisplayName":["New"]}],"isMultiVariationListing":["false"],"topRatedListing":["false"]}]}],"paginationOutput":[{"pageNumber":["1"],"entriesPerPage":["1"],"totalPages":["123191"],"totalEntries":["123191"]}],"itemSearchURL":["https:\/\/www.ebay.com\/sch\/181033\/i.html?_ddo=1&_ipg=1&_pgn=1"]}]}
 
@@ -186,10 +192,8 @@ It took a bit of time to structure these files, but we believe it was worth it a
    npm install
    ```
 4. Enter your API keys in `.env`
-5. Run the app in the development mode with:
-    - `npm start`\
-    Runs the app in the development mode.\
-    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
+5. Run the app in the development mode with `npm start`
+6. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
     The page will reload if you make edits.\
     You will also see any lint errors in the console.
 
@@ -207,7 +211,7 @@ After learning the fundamentals of React, we were asked to team up and develop a
 
 Despite coming from different backgrounds and from all over the world, we became friends very quickly, so we decided to form a team and work together on this project. After brainstorming and discussing, we ended up deciding to do a simple E-commerce web application following the current trends caused by the onset of the COVID-19 pandemic. We dreamed up a whole narrative about us being a Scrum Team working for a fictional company called “Norris Inc.”, and how we were asked to create the web app following a line of reasoning explained in the “Unmet needs” sections.
 
-The project went very well, we were able to work together with little to no conflict and we succeeded in creating the web app that we wanted. We also learned a lot, both in terms of coding know-how and about working on a web development project. We started using Scrum for the project management and we even completed two short sprints but then we decided that it wasn't a good fit for us, as a team of students, and for such a time frame. So, even if we all liked very much to work with Scrum, we decided to switch to Kanban for the final leg of the project. We don't expect to always be switching the project management approach but, in this case, we felt that it was justified and it's also quite normal for students to want to experiment with new things.
+The project went very well, we were able to work together with little to no conflict and we succeeded in creating the web app that we wanted. We also learned a lot, both in terms of coding know-how and about working on a web development project. We started using Scrum for the project management and we even completed two short sprints but then we decided that it wasn't a good fit for us, as a team of students, and for such a time frame. So, even if we all liked very much to work with Scrum, we decided to switch to Kanban for the final phase of the project. We don't expect to always be switching the project management approach but, in this case, we felt that it was justified and it's also quite normal for students to want to experiment with new things.
 
 All in all, it was a very fun project, we learned a lot from it, and we will all treasure the moments spent together working as a team. We hope that you will like it and if you have any questions, comments or you want to reach us, you can do so thru our...
 
@@ -237,11 +241,12 @@ As a response, Norris Inc. has its own logistic and shipping system that utilize
 ## :question: Unmet needs
 The COVID-19 pandemic has a lot of people confined in their homes. This has been going on for some time now and will not change in the foreseeable future because people in the city don’t trust Putin’s vaccine and also have taken a liking to stay at home with their cats, Netflix, wine, food, and pajamas. This is exactly what has disrupted our business model. Simply put, our customers no longer need work clothes to wear around the office because they are working from home in their cat hair covered pajamas.
 
-The folks in the marketing department saw that we now have an underutilized logistic and shipping system and also that a lot of small shop owners around the city are trying to sell their products to customers that no longer go to their physical stores because they aren’t leaving their houses as much. These shops owner’s unmet need is our opportunity: Norris Inc. can provide the shipping service and charge for that.
+The folks in the marketing department saw that we now have an underutilized logistic and shipping system and also that a lot of small shop owners around the city are trying to sell their products to customers that no longer go to their physical stores because they are not leaving their houses as much. These shops owner’s unmet need is our opportunity, Norris Inc. can provide the shipping service and charge for that.
 
-But then there is a second unmet need. Turns out that most of these local stores around town have always sold from physical locations and have never needed (or wanted) to sell online until now. The pandemic is forcing everyone to adapt to this new world where nobody leaves the house. So, here again, the folks from marketing saw an opportunity. Since Norris Inc. already knows how to sell online, because that is what we do, we can also help the stores around the city to do it. This means that we have to provide an E-commerce platform for these shops, and we can also charge for this.
+But then there is a second unmet need, turns out that most of these local stores around town have always sold from physical locations and have never needed (or wanted) to sell online until now. The pandemic is forcing everyone to adapt to this new world where nobody leaves the house. So, here again, the marketing Department saw an opportunity. Since Norris Inc. already knows how to sell online, because that is what we do, we can also help the stores around the city to do it. This means that we have to provide an E-commerce platform for these shops and we can also charge for this.
 
 A third unmet need is that a lot of these small shops around the city pride themselves in offering top-notch customer service and a lot of after-sale service. They do it because they have cultivated a very long relationship with their clients. There are a lot of cases where a clientele has been shopping for the same products in the same shop for years and years. So, if we want to host these shops under our E-commerce platform, we must also provide a way for the customer service and after-sale service to happen. We have been told that meeting this “need” is paramount to the success of the project.
+
 
 ## [:top:](#table-of-contents)
 
@@ -251,7 +256,6 @@ A third unmet need is that a lot of these small shops around the city pride them
 - Learn to use React.
 - Make a simple but beautiful E-commerce web application.
 - Have fun.
-- Get hired in a job or internship after the Bootcamp.
 
 ## [:top:](#table-of-contents)
 
@@ -274,14 +278,14 @@ A third unmet need is that a lot of these small shops around the city pride them
 
 ### Persona #2: Seller
 - Small local store, been there since forever.
-- Mom and pop store.
+- Family owned store.
 - “Brick and mortar”.
 - Does not sell food or other perishable items.
 - Sells technology, clothes, toys, small electronics, small household appliances, etc. 
-- Because of the pandemic they can't sell in person so to keep the business they want to sell online but I don't know how to do it.
+- Because of the pandemic they can't sell in person, so to keep the business they want to sell online but they don't know how to do it.
 - Provides a lot of after-sale service and customer service.
 - Has an established clientele.
-- Doesn't have warehouses or shipping services so there is trepidation about selling online.
+- Does not have warehouses or shipping services so there is trepidation about selling online.
 
 ## :brain: Explorations + Decisions
 ### Brainstorming
@@ -315,43 +319,149 @@ We used Jira as our main tool to assist in the project management and Confluence
 - As a buyer, I want to be able to get customer service and after-sale service through the website, so I keep shopping in the same places I did before the pandemic.
 - As a seller, I want to access information about the buyers so I can give them after-sale service.
 - As a buyer, I want to be able to write reviews about the shops and their after-sales service so other potential shoppers can know what are the best stores.
-- As a buyer, I want to be able to log in to the webpage so I can have a more personalized experience.
-- As a seller, I want to be able to log in to the webpage so I can update and maintain my store and access useful information.
+- As a buyer, I want to be able to log into the webpage so I can have a more personalized experience.
+- As a seller, I want to be able to log into the webpage so I can update and maintain my store and access useful information.
 - As a seller, I want to implement marketing strategies in my shop so I can sell more products and earn more money.
 
 ## [:top:](#table-of-contents)
 
-## :nail_care: Design guidelines and ressources
-> These are ressources and general guidelines that we decided to follow during the development of our web application.
+## :nail_care: Atomic design, Styled Components, and UX notes
+Norris Inc. customers are mainly [old people](#persona-1-buyer), as per what we decided in our [brainstorming sessions and JAD sessions](#brainstorming).
 
-### CSS coding guidelines
-…
+This forced us to adhere to the following guidelines for the front-end part of the web application:
+- Clean, minimal, and lightweight design.
+- Easy-to-use.
+- Clean and straight-forward UX, every action from users will have an immediate and easy-to-understand response.
 
-### UX/UI for the shops (buyer side)
-- Maximum of 10 items per page on a shop’s page so users with phone or PC with small screens can comfortably browse and don’t get confused by an unending list of items.
+Starting from the firsts mock-ups, our team observed a trend: every element (button, block of text, etc.), probably because of its inherent simplicity, was always repeated multiple times. The natural corollary to this finding was that the *atomic design* approach was our best option going forward.
 
-- The shops' pages have to be simple, not cluttered, and devoid of sponsored products, advertisements, or suggestions of any kind.\
-Our target demographic, more often than not, already knows exactly what product or service from what specific shop he/she is looking for. So, the reason to use our E-commerce app is to buy that specific item. It’s not to buy the “cheapest” pair of jeans from any random seller.\
-Therefore, suggestions are intrusive and don’t bring any value to the user.
+Then, a lot of questions were raised: “Which combination of colors do we want to use?”, “What font(s)?”, "How big should the buttons be?", etc. Because we don't have a UX/UI professional in our team, the easiest way for us to answer this is to try, experiment and see what works, what looks appealing. As it happens, the atomic design approach allows you to have more flexibility and lets you change things very quickly, with minimal coding cost and throughout all stages of production.
 
-- As a corollary to the last bullet point, the buyer user may have issues locating the product inside the app (again, not selecting or deciding which one to buy) so a “search” functionality may be added inside each shop.
+Even better, because of this approach, everything is designed and coded for scalability, maintainability, and changeability.
 
-### UX/UI for the buying process
-Give confirmation on every step of the buying process with a clear explanation text.
-Examples:
-- “Review the items you have selected here”
-- “No purchase has been made yet”
-- “Click here to proceed to the payment page”
+### Step 1: Setting the main variables and styles
+
+*Main elements defined with the atomic design approach in the wireframing stage (software used: Figma):*
+
+![](https://github.com/Gabriellji/e-commerce-app/blob/main/src/data/images/readme/image7.png?raw=true)
+
+`theme.js` *file (with *Styled Components* for CSS handling for React Components) with all variables defined:*
+
+![](https://github.com/Gabriellji/e-commerce-app/blob/main/src/data/images/readme/image2.png?raw=true)
+
+**Pros of step 1:**
+- Code is clean, scalable, and easy to understand.
+- Creating and styling an element is easy and fast.
+- Code is maintainable, if we receive a request to change something we can perform a change in seconds (ex.: “Change primary color to #447FF2”; “Change font-size to 10px instead of 8px”).
+
+**Con’s:**
+- Following the atomic design approach and setting everything up takes more work compared to standard styling.
+
+**UI’s & UX’s note:**
+- We used only one main color for enhanced UX, all elements will be made with combinations of one color plus white or black, and an opacity value.
+- One single font.
+- Standard typography space with a font size of 8 pixels.
+- In desktop view, user and app interactions will be made with modals instead of moving to another page.
+- 3 viewports with media breaks at 450px and 768px.
+- Animation transitions set to ¼ of seconds for all interactive elements.
+
+### Step 2: "Atoms"
+
+Atoms are the bread-and-butter of our projects. Every component is made from scratch because we opted not to use premade UI (like “MaterialUI”).
+
+We started with SaSS for CSS styling but, after a couple of days, we switched to Styled Components.
+
+> ***Why Styled Components?***\
+Styled Components allow us to pass props to every single “atom” and style them with normal javascript which also means that adding logic to it becomes trivial. As such, the only limits are our imaginations.\
+\
+As students, not yet professionals, we were amazed by this library and its possibilities. Also, the Styled Components approach fits nicely with our main goal.
+
+*An "atom" from our project:*
+
+![](https://github.com/Gabriellji/e-commerce-app/blob/main/src/data/images/readme/image3.png?raw=true)
+
+This button can receive props for style (like: size, type, width), but also for actions and the `onClick` trigger.
+
+*Atoms called with passing and passed props:*
+
+![](https://github.com/Gabriellji/e-commerce-app/blob/main/src/data/images/readme/image1.png?raw=true)
+
+**Pros of step 2:**
+
+- Code consistency, every atom has the same structure and can be called with the same workflow.
+
+**Cons:**
+
+- Atom components look scary at first view because they are very long blocks of code.
+
+**UI’s & UX’s note:**
+- Components like buttons and links have a hover effect with little animations for better UX.
+Many atoms have border-radius for soft and clean visualization.
+
+### Step 3: Defining “Molecules”
+
+Time for some atoms recipes! :bento: :yum:
+
+This is the moment where the atomic design approach and Styled Components shine: mounting the molecules was fast and easy with all the work we made in previous steps. In both the wireframing and coding stages, this step was the easiest.
+
+In both the wireframing and coding stages, this step was the easiest.
+
+*A molecule at the wireframe stage:*
+
+![](https://github.com/Gabriellji/e-commerce-app/blob/main/src/data/images/readme/image8.png?raw=true)
+
+*The same molecule, coded and displayed by a browser:*
+
+![](https://github.com/Gabriellji/e-commerce-app/blob/main/src/data/images/readme/image6.png?raw=true)
+
+**Pros of step 3:**
+- Very fast workflow for creating a molecule.
+- Code consistency thanks to atoms.
+- Easy to maintain, particularly when there are multiple team members.
+
+**Cons:**
+- None, this is where atomic design shines :sunglasses:.
+
+**UI’s & UX’s note:** 
+- Components like cards have a hover effect with little animations for better UX.
+- Many molecules have border-radius for soft and clean visualization.
+- Navbars change from mobile and tablet to desktop view.
+
+### Step 4: Pages (finally!)
+
+:sweat_smile: Last step for our project. The pages are made by molecules and atoms:
+
+
+*Home page, composed of 3 molecules:*
+
+![](https://github.com/Gabriellji/e-commerce-app/blob/main/src/data/images/readme/image5.png?raw=true)
+
+*Map page, composed of molecules and atoms:*
+
+![](https://github.com/Gabriellji/e-commerce-app/blob/main/src/data/images/readme/image4.png?raw=true)
+
+**Pros of step 4:**
+- Easy to make, maintainable pages.
+- Clean code (home page is 13 lines long).
+
+**Cons:**
+- Same as in step 3:  no cons :sunglasses:.
+
+### Conclusion
+The atomic design approach and Styled Components were not easy to use at first, scary-looking even. However, as students, it's our duty to learn and practice a lot of different things, without fear of the unknown.
+
+This approach gave us the possibility to write clean and professional code and was an awesome learning opportunity.
 
 ## [:top:](#table-of-contents)
 
-## :dizzy: Git and GitHub guidelines
-For our project we opted to follow those guidelines:
-Small commits, to be able to find any problem easier and faster if we happen to encounter one.
+## :dizzy: Git and GitHub Guidelines
+**In our project, we decided to follow these guidelines for Git and GitHub.**
+
+- Small and frequent commits, to be able to find any problem facilitate the handling of any problem that may arise.
 - Commits with a significant name about the feature it’s implementing.
-- Branches with a significant name about the feature it’s addressing.
-- Pull requests done often with small but complete features rather than far apart with very big changes to the code.
-- All pull requests are to be reviewed and approved by at least one person before being merged into the main branch.
+- Branches with a significant name about the feature that is being worked on.
+- Pull requests done often (with working branches of course), to make sure that everyone in the team is working on the same version.
+- Pull requests have to be reviewed and approved by at least one person before being merged into the main branch.
 
 ## [:top:](#table-of-contents)
 
@@ -359,3 +469,4 @@ Small commits, to be able to find any problem easier and faster if we happen to 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
 ## [:top:](#table-of-contents)
+

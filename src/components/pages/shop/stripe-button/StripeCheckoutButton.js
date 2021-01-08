@@ -35,7 +35,7 @@ const StripeCheckoutButton = ({ price }) => {
         size="M"
         text={textData.shop.checkout.label}
         color="primary"
-        width="parent"
+        width="auto"
       />
     </StripeCheckout>
   );

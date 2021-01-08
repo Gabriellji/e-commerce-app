@@ -4,6 +4,7 @@ import { theme } from "../../../data/theme";
 
 export const StyledBtn = styled.button`
   width: ${(p) => (p.width === "parent" ? "100%" : "auto")};
+  width: ${(p) => p.width==="auto" && "80vw"};
   height: ${(p) =>
     p.size === "S"
       ? theme.sizes.buttons.S
@@ -54,6 +55,9 @@ export const StyledBtn = styled.button`
       ? `calc(3 * ${theme.spacer})`
       : `calc(4 * ${theme.spacer})`};
   border: 1px solid ${theme.colors.primary};
+  @media (min-width:${theme.viewport.tablet}) {
+    width: ${(p) => p.width==="auto" && "50vw"};
+  }
   /* animation */
   transition: ${theme.transition};
   :hover {
